@@ -6,3 +6,11 @@ c:\users\kids\documents\visual studio 2013\Projects\WindowsGame1\WindowsGame1\Wi
 c:\users\kids\documents\visual studio 2013\Projects\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.xml
 c:\users\kids\documents\visual studio 2013\Projects\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.pdb
 c:\users\kids\documents\visual studio 2013\Projects\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Andy.xnb
+C:\Users\Kids\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Andy.xnb
+C:\Users\Kids\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\bin\x86\Debug\WindowsGame1.exe
+C:\Users\Kids\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\bin\x86\Debug\WindowsGame1.pdb
+C:\Users\Kids\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\bin\x86\Debug\WindowsGame1.xml
+C:\Users\Kids\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Kids\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.exe
+C:\Users\Kids\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.xml
+C:\Users\Kids\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.pdb

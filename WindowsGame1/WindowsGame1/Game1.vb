@@ -58,7 +58,7 @@ Public Class Game1
     ''' checking for collisions, gathering input, and playing audio.
     ''' </summary>
     ''' <param name="gameTime">Provides a snapshot of timing values.</param>
-    Dim mouseColor As Color = Color.Wheat
+    Private mouseColor As Color = Color.Black
     Protected Overrides Sub Update(ByVal gameTime As GameTime)
         ' Allows the game to exit
         If GamePad.GetState(PlayerIndex.One).Buttons.Back = ButtonState.Pressed Then
@@ -80,7 +80,23 @@ Public Class Game1
         Next
 
         If Keyboard.GetState.IsKeyDown(Keys.NumPad1) Then
-            Dim mouseColor As Color = Color.Pink
+            mouseColor = Color.Black
+        End If
+
+        If Keyboard.GetState.IsKeyDown(Keys.NumPad2) Then
+            mouseColor = Color.Blue
+        End If
+
+        If Keyboard.GetState.IsKeyDown(Keys.NumPad3) Then
+            mouseColor = Color.Red
+        End If
+
+        If Keyboard.GetState.IsKeyDown(Keys.NumPad4) Then
+            mouseColor = Color.Yellow
+        End If
+
+        If Keyboard.GetState.IsKeyDown(Keys.NumPad5) Then
+            mouseColor = Color.Green
         End If
 
         If Keyboard.GetState.IsKeyDown(Keys.C) Then
