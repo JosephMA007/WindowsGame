@@ -1,4 +1,4 @@
 ﻿Public Class Player
-    Inherits Block
+    Inherits Unit
 
 End Class

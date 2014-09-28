@@ -53,13 +53,12 @@ Public Class Game1
     Protected Overrides Sub UnloadContent()
         ' TODO: Unload any non ContentManager content here
     End Sub
-
+    Private mouseColor As Color = Color.Black
     ''' <summary>
     ''' Allows the game to run logic such as updating the world,
     ''' checking for collisions, gathering input, and playing audio.
     ''' </summary>
     ''' <param name="gameTime">Provides a snapshot of timing values.</param>
-    Private mouseColor As Color = Color.Black
     Protected Overrides Sub Update(ByVal gameTime As GameTime)
         If (Me.IsActive) Then
             ' Allows the game to exit
@@ -131,7 +130,7 @@ Public Class Game1
         spriteBatch.Begin()
 
         For i = 0 To blocks.Count - 1
-            spriteBatch.Draw(blocks(i).blocktex, blocks(i).blockPos, Color.White)
+            spriteBatch.Draw(blocks(i).unittex, blocks(i).unitPos, Color.White)
         Next
 
         spriteBatch.End()
