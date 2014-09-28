@@ -17,9 +17,9 @@
     Public Sub Move(dir As direction)
         Select Case dir
             Case direction.up
-                unitPos += New Vector2(0, speed)
-            Case direction.down
                 unitPos -= New Vector2(0, speed)
+            Case direction.down
+                unitPos += New Vector2(0, speed)
             Case direction.right
                 unitPos += New Vector2(speed, 0)
             Case direction.left

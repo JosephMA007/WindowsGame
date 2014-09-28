@@ -97,6 +97,7 @@
     <Compile Include="Game1.vb" />
     <Compile Include="Text1.vb" />
     <Compile Include="Unit.vb" />
+    <Compile Include="World Genorator.vb" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

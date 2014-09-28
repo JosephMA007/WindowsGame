@@ -16,7 +16,7 @@ Public Class Game1
         Content.RootDirectory = "Content"
         graphics.PreferredBackBufferWidth = 256
         graphics.PreferredBackBufferHeight = 256
-        graphics.IsFullScreen = True
+        graphics.IsFullScreen = False
         IsMouseVisible = True
     End Sub
 
@@ -39,6 +39,10 @@ Public Class Game1
         ' Create a new SpriteBatch, which can be used to draw textures.
         spriteBatch = New SpriteBatch(GraphicsDevice)
         blocks = New List(Of Block)
+        myPlayer = New Player
+
+        World_Genorator.Genorate(blocks)
+
         'For i = 0 To 2
         '    blocks.Add(New Block)
         'Next
@@ -123,6 +127,14 @@ Public Class Game1
 
             If Keyboard.GetState.IsKeyDown(Keys.A) Then
                 myPlayer.Move(Player.direction.left)
+            End If
+
+            If Keyboard.GetState.IsKeyDown(Keys.F) Then
+                If graphics.IsFullScreen = True Then
+                    graphics.IsFullScreen = False
+                Else
+                    graphics.IsFullScreen = True
+                End If
             End If
             '        For i = 0 To blocks.Count - 2
             '            If blocks(blocks.Count - 1).blockPos = blocks(i).blockPos Then

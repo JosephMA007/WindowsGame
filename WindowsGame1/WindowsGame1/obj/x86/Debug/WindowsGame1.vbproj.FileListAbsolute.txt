@@ -14,3 +14,12 @@ C:\Users\Kids\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\obj\x86\Deb
 C:\Users\Kids\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.exe
 C:\Users\Kids\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.xml
 C:\Users\Kids\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.pdb
+C:\Users\micha_000\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Andy.xnb
+C:\Users\micha_000\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\bin\x86\Debug\WindowsGame1.exe
+C:\Users\micha_000\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\bin\x86\Debug\WindowsGame1.pdb
+C:\Users\micha_000\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\bin\x86\Debug\WindowsGame1.xml
+C:\Users\micha_000\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\micha_000\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.exe
+C:\Users\micha_000\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.xml
+C:\Users\micha_000\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.pdb
+C:\Users\micha_000\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.vbprojResolveAssemblyReference.cache
