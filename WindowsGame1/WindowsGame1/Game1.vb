@@ -8,6 +8,7 @@ Public Class Game1
     Private WithEvents spriteBatch As SpriteBatch
     'Private blocks(3 - 1) As Block
     Private blocks As List(Of Block)
+    Private myPlayer As Player
     Private myText As Text1
 
     Public Sub New()
@@ -108,6 +109,21 @@ Public Class Game1
                 blocks.Clear()
             End If
 
+            If Keyboard.GetState.IsKeyDown(Keys.W) Then
+                myPlayer.Move(Player.direction.up)
+            End If
+
+            If Keyboard.GetState.IsKeyDown(Keys.S) Then
+                myPlayer.Move(Player.direction.down)
+            End If
+
+            If Keyboard.GetState.IsKeyDown(Keys.D) Then
+                myPlayer.Move(Player.direction.right)
+            End If
+
+            If Keyboard.GetState.IsKeyDown(Keys.A) Then
+                myPlayer.Move(Player.direction.left)
+            End If
             '        For i = 0 To blocks.Count - 2
             '            If blocks(blocks.Count - 1).blockPos = blocks(i).blockPos Then
             '                blocks.RemoveAt(blocks.Count - 1)
@@ -129,9 +145,12 @@ Public Class Game1
 
         spriteBatch.Begin()
 
-        For i = 0 To blocks.Count - 1
+        For i = 0 To Blocks.Count - 1
             spriteBatch.Draw(blocks(i).unittex, blocks(i).unitPos, Color.White)
         Next
+
+        spriteBatch.Draw(myPlayer.unittex, myPlayer.unitPos, Color.White)
+
 
         spriteBatch.End()
 
