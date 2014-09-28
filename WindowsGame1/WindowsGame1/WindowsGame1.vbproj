@@ -91,9 +91,11 @@
   <ItemGroup>
     <Compile Include="Block.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="Player.vb" />
     <Compile Include="Program.vb" />
     <Compile Include="Game1.vb" />
     <Compile Include="Text1.vb" />
+    <Compile Include="Unit.vb" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
