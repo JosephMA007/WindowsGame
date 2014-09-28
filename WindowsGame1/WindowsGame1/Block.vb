@@ -38,7 +38,7 @@
         If IsNothing(x) Then
             blockPos += New Vector2(0, 4)
         End If
-        If Else IsNothing(n) Then
+        If IsNothing(n) Then
         Else
             blockPos -= New Vector2(0, 4)
         End If
