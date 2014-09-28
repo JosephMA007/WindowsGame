@@ -13,8 +13,9 @@ Public Class Game1
     Public Sub New()
         graphics = New GraphicsDeviceManager(Me)
         Content.RootDirectory = "Content"
-        graphics.PreferredBackBufferWidth = 1280
-        graphics.PreferredBackBufferHeight = 1000
+        graphics.PreferredBackBufferWidth = 256
+        graphics.PreferredBackBufferHeight = 256
+        graphics.IsFullScreen = True
         IsMouseVisible = True
     End Sub
 
@@ -60,62 +61,64 @@ Public Class Game1
     ''' <param name="gameTime">Provides a snapshot of timing values.</param>
     Private mouseColor As Color = Color.Black
     Protected Overrides Sub Update(ByVal gameTime As GameTime)
-        ' Allows the game to exit
-        If GamePad.GetState(PlayerIndex.One).Buttons.Back = ButtonState.Pressed Then
-            Me.Exit()
-        End If
-
-        myText.text = "Blocks: " & blocks.Count
-
-        Dim mousePos As Vector2 = New Vector2(Math.Round(Mouse.GetState.X / 16) * 16, Math.Round(Mouse.GetState.Y / 16) * 16)
-
-        If Mouse.GetState.RightButton = ButtonState.Pressed Then
-            Block.addBlock(blocks, mousePos, mouseColor, True)
-        End If
-
-        If Mouse.GetState.LeftButton = ButtonState.Pressed Then
-            Block.addBlock(blocks, mousePos, mouseColor, False)
-        End If
-
-        For Each b As Block In blocks
-            If b.Gravity Then
-                b.fall(blocks)
+        If (Me.IsActive) Then
+            ' Allows the game to exit
+            If Keyboard.GetState.IsKeyDown(Keys.Escape) Then
+                Me.Exit()
             End If
-        Next
 
-        If Keyboard.GetState.IsKeyDown(Keys.NumPad1) Then
-            mouseColor = Color.Black
+            myText.text = "Blocks: " & blocks.Count
+
+            Dim mousePos As Vector2 = New Vector2(Math.Round(Mouse.GetState.X / 16) * 16, Math.Round(Mouse.GetState.Y / 16) * 16)
+
+            If Mouse.GetState.RightButton = ButtonState.Pressed Then
+                Block.addBlock(blocks, mousePos, mouseColor, True)
+            End If
+
+            If Mouse.GetState.LeftButton = ButtonState.Pressed Then
+                Block.addBlock(blocks, mousePos, mouseColor, False)
+            End If
+
+            For Each b As Block In blocks
+                If b.Gravity Then
+                    b.fall(blocks)
+                End If
+            Next
+
+            If Keyboard.GetState.IsKeyDown(Keys.NumPad1) Then
+                mouseColor = Color.Black
+            End If
+
+            If Keyboard.GetState.IsKeyDown(Keys.NumPad2) Then
+                mouseColor = Color.Blue
+            End If
+
+            If Keyboard.GetState.IsKeyDown(Keys.NumPad3) Then
+                mouseColor = Color.Red
+            End If
+
+            If Keyboard.GetState.IsKeyDown(Keys.NumPad4) Then
+                mouseColor = Color.Yellow
+            End If
+
+            If Keyboard.GetState.IsKeyDown(Keys.NumPad5) Then
+                mouseColor = Color.Green
+            End If
+
+            If Keyboard.GetState.IsKeyDown(Keys.C) Then
+                blocks.Clear()
+            End If
+
+            '        For i = 0 To blocks.Count - 2
+            '            If blocks(blocks.Count - 1).blockPos = blocks(i).blockPos Then
+            '                blocks.RemoveAt(blocks.Count - 1)
+            '                GoTo end_of_for
+            '            End If
+            '        Next
+            'end_of_for:
+            ' TODO: Add your update logic here
+            MyBase.Update(gameTime)
         End If
-
-        If Keyboard.GetState.IsKeyDown(Keys.NumPad2) Then
-            mouseColor = Color.Blue
-        End If
-
-        If Keyboard.GetState.IsKeyDown(Keys.NumPad3) Then
-            mouseColor = Color.Red
-        End If
-
-        If Keyboard.GetState.IsKeyDown(Keys.NumPad4) Then
-            mouseColor = Color.Yellow
-        End If
-
-        If Keyboard.GetState.IsKeyDown(Keys.NumPad5) Then
-            mouseColor = Color.Green
-        End If
-
-        If Keyboard.GetState.IsKeyDown(Keys.C) Then
-            blocks.Clear()
-        End If
-
-        '        For i = 0 To blocks.Count - 2
-        '            If blocks(blocks.Count - 1).blockPos = blocks(i).blockPos Then
-        '                blocks.RemoveAt(blocks.Count - 1)
-        '                GoTo end_of_for
-        '            End If
-        '        Next
-        'end_of_for:
-        ' TODO: Add your update logic here
-        MyBase.Update(gameTime)
     End Sub
 
     ''' <summary>
