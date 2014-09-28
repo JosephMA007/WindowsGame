@@ -30,7 +30,17 @@
         End If
     End Sub
 
-    Public Sub fall()
-        blockPos += New Vector2(0, 4)
+    Public Sub fall(ByRef b As System.Collections.Generic.List(Of Block))
+        Dim pos As Vector2 = blockPos
+        pos += New Vector2(0, 16)
+        Dim x As Block = b.Find(Function(y) y.blockPos = pos And y.Gravity = False)
+        Dim n As Block = b.Find(Function(y) y.blockPos = pos And y.Gravity = True)
+        If IsNothing(x) Then
+            blockPos += New Vector2(0, 4)
+        End If
+        If Else IsNothing(n) Then
+        Else
+            blockPos -= New Vector2(0, 4)
+        End If
     End Sub
 End Class

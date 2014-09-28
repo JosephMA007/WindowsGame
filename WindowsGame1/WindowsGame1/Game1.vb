@@ -73,9 +73,13 @@ Public Class Game1
             Block.addBlock(blocks, mousePos, mouseColor, True)
         End If
 
+        If Mouse.GetState.RightButton = ButtonState.Pressed Then
+            Block.addBlock(blocks, mousePos, mouseColor, False)
+        End If
+
         For Each b As Block In blocks
             If b.Gravity Then
-                b.fall()
+                b.fall(blocks)
             End If
         Next
 
