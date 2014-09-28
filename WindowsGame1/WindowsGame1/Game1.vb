@@ -69,11 +69,11 @@ Public Class Game1
 
         Dim mousePos As Vector2 = New Vector2(Math.Round(Mouse.GetState.X / 16) * 16, Math.Round(Mouse.GetState.Y / 16) * 16)
 
-        If Mouse.GetState.LeftButton = ButtonState.Pressed Then
+        If Mouse.GetState.RightButton = ButtonState.Pressed Then
             Block.addBlock(blocks, mousePos, mouseColor, True)
         End If
 
-        If Mouse.GetState.RightButton = ButtonState.Pressed Then
+        If Mouse.GetState.LeftButton = ButtonState.Pressed Then
             Block.addBlock(blocks, mousePos, mouseColor, False)
         End If
 
