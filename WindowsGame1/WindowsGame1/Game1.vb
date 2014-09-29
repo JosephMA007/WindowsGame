@@ -14,8 +14,8 @@ Public Class Game1
     Public Sub New()
         graphics = New GraphicsDeviceManager(Me)
         Content.RootDirectory = "Content"
-        graphics.PreferredBackBufferWidth = 256
-        graphics.PreferredBackBufferHeight = 256
+        graphics.PreferredBackBufferWidth = 1024
+        graphics.PreferredBackBufferHeight = 500
         graphics.IsFullScreen = False
         IsMouseVisible = True
     End Sub
@@ -73,7 +73,7 @@ Public Class Game1
 
             myText.text = "Blocks: " & blocks.Count
 
-            Dim mousePos As Vector2 = New Vector2(Math.Round(Mouse.GetState.X / 16) * 16, Math.Round(Mouse.GetState.Y / 16) * 16)
+            Dim mousePos As Vector2 = Block.BlockPos(Mouse.GetState.X, Mouse.GetState.Y)
 
             If Mouse.GetState.RightButton = ButtonState.Pressed Then
                 Block.addBlock(blocks, mousePos, mouseColor, True)

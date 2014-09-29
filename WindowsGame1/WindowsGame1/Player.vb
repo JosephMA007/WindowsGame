@@ -2,6 +2,7 @@
     Inherits Unit
     Public hp As Integer
     Public speed As Integer
+    Public Const playerSize As Integer = 20
     Public Enum direction
         up
         down
@@ -9,6 +10,7 @@
         right
     End Enum
     Public Sub New()
+        MyBase.New(playerSize)
         hp = 5
         speed = 3
         setColor(Color.Pink)

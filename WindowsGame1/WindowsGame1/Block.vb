@@ -1,16 +1,30 @@
 ﻿Public Class Block
     Inherits Unit
+    Public Const blockSize As Integer = 16
+    Public Sub New()
+        MyBase.New(blockSize)
+    End Sub
     Public Shared Sub addBlock(ByRef b As System.Collections.Generic.List(Of Block), pos As Vector2, c As Color, Optional g As Boolean = False)
-        Dim x As Block = b.Find(Function(y) y.unitPos = pos)
-        Dim z As New Block
-        z.setColor(c)
-        z.unitPos = pos
-        z.Gravity = g
-        If IsNothing(x) Then
-            b.Add(z)
+        Dim foundBlock As Block = b.Find(Function(y) BlockPos(y.unitPos) = BlockPos(pos))
+        Dim newBlock As New Block
+        newBlock.setColor(c)
+        newBlock.unitPos = pos
+        newBlock.Gravity = g
+        newBlock.moveable = g 'this will tell us if the block should fall later on
+        If IsNothing(foundBlock) Then
+            b.Add(newBlock)
         Else
-            b.Remove(x)
-            b.Add(z)
+            If Not foundBlock.Gravity Then
+                b.Remove(foundBlock)
+                b.Add(newBlock)
+            End If
         End If
     End Sub
+    Public Shared Function BlockPos(pos As Vector2) As Vector2
+        Return New Vector2(Math.Round(pos.X / 16) * 16, Math.Round(pos.Y / 16) * 16)
+    End Function
+    Public Shared Function BlockPos(x As Integer, y As Integer) As Vector2
+        Return New Vector2(Math.Round(x / 16) * 16, Math.Round(y / 16) * 16)
+    End Function
+
 End Class
