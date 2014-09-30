@@ -41,7 +41,7 @@ Public Class Game1
         blocks = New List(Of Block)
         myPlayer = New Player
 
-        World_Genorator.Genorate(blocks)
+        World_Genorator.GenorateTexturePattern(blocks)
 
         'For i = 0 To 2
         '    blocks.Add(New Block)
@@ -74,6 +74,12 @@ Public Class Game1
             myText.text = "Blocks: " & blocks.Count
 
             Dim mousePos As Vector2 = Block.BlockPos(Mouse.GetState.X, Mouse.GetState.Y)
+
+            'block under mouse
+            Dim b1 As Block = blocks.Find(Function(x) x.unitPos = mousePos)
+            If Not IsNothing(b1) Then
+                myText.text += vbNewLine & "Block under mouse: " & b1.id
+            End If
 
             If Mouse.GetState.RightButton = ButtonState.Pressed Then
                 Block.addBlock(blocks, mousePos, mouseColor, True)

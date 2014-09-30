@@ -4,8 +4,14 @@
     Public Sub New()
         MyBase.New(blockSize)
     End Sub
-    Public Shared Sub addBlock(ByRef b As System.Collections.Generic.List(Of Block), pos As Vector2, c As Color, Optional g As Boolean = False)
-        Dim foundBlock As Block = b.Find(Function(y) BlockPos(y.unitPos) = BlockPos(pos))
+    Public Shared Sub addBlock(ByRef b As System.Collections.Generic.List(Of Block),
+                               pos As Vector2, c As Color,
+                               Optional g As Boolean = False)
+        'make sure the block is only placed in the grid
+        pos = BlockPos(pos)
+        'see if there is already a block there
+        Dim foundBlock As Block = b.Find(Function(y) BlockPos(y.unitPos) = pos)
+        'start a new block
         Dim newBlock As New Block
         newBlock.setColor(c)
         newBlock.unitPos = pos

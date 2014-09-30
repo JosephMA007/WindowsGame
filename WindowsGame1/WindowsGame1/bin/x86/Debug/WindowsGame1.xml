@@ -6,7 +6,7 @@ WindowsGame1
 </name>
 </assembly>
 <members>
-<member name="M:WindowsGame1.Program.Main(System.String[])">
+<member name="F:WindowsGame1.Program.unitIds">
 	<summary>
  The main entry point for the application.
  </summary>

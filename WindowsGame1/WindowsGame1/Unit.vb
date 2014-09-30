@@ -5,6 +5,7 @@
     Public data() As Color
     Public moveable As Boolean
     Public Const fallSpeed As Integer = 4
+    Public id As Integer
     Public Sub New(size As Integer)
         unitPos = New Vector2(20, 20)
         unittex = New Texture2D(graphics.GraphicsDevice, size, size)
@@ -12,6 +13,8 @@
         ReDim data((size * size) - 1)
         setColor(Color.Black)
         moveable = False
+        unitIds += 1
+        id = unitIds
     End Sub
 
     Public Sub setColor(c As Color)

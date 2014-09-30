@@ -10,4 +10,16 @@
         Next
 
     End Sub
+
+    Public Shared Sub GenorateTexturePattern(ByRef b As System.Collections.Generic.List(Of Block))
+
+        'still need to put this in the middle
+
+        For row = 0 To 15
+            For col = 0 To 15
+                Block.addBlock(b, New Vector2(col * Block.blockSize, row * Block.blockSize), Color.Green, False)
+            Next
+        Next
+
+    End Sub
 End Class
