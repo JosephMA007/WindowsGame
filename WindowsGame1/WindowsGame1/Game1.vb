@@ -10,6 +10,12 @@ Public Class Game1
     Private blocks As List(Of Block)
     Private myPlayer As Player
     Private myText As Text1
+    Private gameMode As gameModeEnum
+    Enum gameModeEnum
+        normal = 1
+        textureCreator = 2
+
+    End Enum
 
     Public Sub New()
         graphics = New GraphicsDeviceManager(Me)
@@ -18,6 +24,7 @@ Public Class Game1
         graphics.PreferredBackBufferHeight = 500
         graphics.IsFullScreen = False
         IsMouseVisible = True
+        gameMode = gameModeEnum.normal
     End Sub
 
     ''' <summary>
@@ -41,7 +48,7 @@ Public Class Game1
         blocks = New List(Of Block)
         myPlayer = New Player
 
-        World_Genorator.GenorateTexturePattern(blocks)
+        'World_Genorator.GenorateTexturePattern(blocks)
 
         'For i = 0 To 2
         '    blocks.Add(New Block)
@@ -66,92 +73,107 @@ Public Class Game1
     ''' <param name="gameTime">Provides a snapshot of timing values.</param>
     Protected Overrides Sub Update(ByVal gameTime As GameTime)
         If (Me.IsActive) Then
-            ' Allows the game to exit
-            If Keyboard.GetState.IsKeyDown(Keys.Escape) Then
-                Me.Exit()
-            End If
-
-            myText.text = "Blocks: " & blocks.Count
-
             Dim mousePos As Vector2 = Block.BlockPos(Mouse.GetState.X, Mouse.GetState.Y)
 
+            myText.text = "Debugging Info:"
+            myText.text += vbNewLine & "Blocks: " & blocks.Count
             'block under mouse
             Dim b1 As Block = blocks.Find(Function(x) x.unitPos = mousePos)
             If Not IsNothing(b1) Then
                 myText.text += vbNewLine & "Block under mouse: " & b1.id
             End If
 
-            If Mouse.GetState.RightButton = ButtonState.Pressed Then
-                Block.addBlock(blocks, mousePos, mouseColor, True)
-            End If
+            myText.text += vbNewLine & "Mouse Pos (" & Mouse.GetState.X & "," & Mouse.GetState.Y & ") Block Calc (" & mousePos.X & "," & mousePos.Y & ")"
 
-            If Mouse.GetState.LeftButton = ButtonState.Pressed Then
-                Block.addBlock(blocks, mousePos, mouseColor, False)
-            End If
-
-            For Each b As Block In blocks
-                If b.Gravity Then
-                    b.fall(blocks)
+            If gameMode = gameModeEnum.normal Then
+                ' Allows the game to exit
+                If Keyboard.GetState.IsKeyDown(Keys.Escape) Then
+                    'Me.Exit()
                 End If
-            Next
 
-            If Keyboard.GetState.IsKeyDown(Keys.NumPad1) Then
-                mouseColor = Color.Black
-            End If
+                If Mouse.GetState.RightButton = ButtonState.Pressed Then
+                    Block.addBlock(blocks, mousePos, mouseColor, True)
+                End If
 
-            If Keyboard.GetState.IsKeyDown(Keys.NumPad2) Then
-                mouseColor = Color.Blue
-            End If
+                If Mouse.GetState.LeftButton = ButtonState.Pressed Then
+                    Block.addBlock(blocks, mousePos, mouseColor, False)
+                End If
 
-            If Keyboard.GetState.IsKeyDown(Keys.NumPad3) Then
-                mouseColor = Color.Red
-            End If
+                For Each b As Block In blocks
+                    If b.Gravity Then
+                        b.fall(blocks)
+                    End If
+                Next
 
-            If Keyboard.GetState.IsKeyDown(Keys.NumPad4) Then
-                mouseColor = Color.Yellow
-            End If
+                If Keyboard.GetState.IsKeyDown(Keys.NumPad1) Then
+                    mouseColor = Color.Black
+                End If
 
-            If Keyboard.GetState.IsKeyDown(Keys.NumPad5) Then
-                mouseColor = Color.Green
-            End If
+                If Keyboard.GetState.IsKeyDown(Keys.NumPad2) Then
+                    mouseColor = Color.Blue
+                End If
 
-            If Keyboard.GetState.IsKeyDown(Keys.C) Then
-                blocks.Clear()
-            End If
+                If Keyboard.GetState.IsKeyDown(Keys.NumPad3) Then
+                    mouseColor = Color.Red
+                End If
 
-            If Keyboard.GetState.IsKeyDown(Keys.W) Then
-                myPlayer.Move(Player.direction.up)
-            End If
+                If Keyboard.GetState.IsKeyDown(Keys.NumPad4) Then
+                    mouseColor = Color.Yellow
+                End If
 
-            If Keyboard.GetState.IsKeyDown(Keys.S) Then
-                myPlayer.Move(Player.direction.down)
-            End If
+                If Keyboard.GetState.IsKeyDown(Keys.NumPad5) Then
+                    mouseColor = Color.Green
+                End If
 
-            If Keyboard.GetState.IsKeyDown(Keys.D) Then
-                myPlayer.Move(Player.direction.right)
-            End If
+                If Keyboard.GetState.IsKeyDown(Keys.C) Then
+                    blocks.Clear()
+                End If
 
-            If Keyboard.GetState.IsKeyDown(Keys.A) Then
-                myPlayer.Move(Player.direction.left)
-            End If
+                If Keyboard.GetState.IsKeyDown(Keys.T) Then
+                    blocks.Clear()
+                    World_Genorator.GenorateTexturePattern(blocks)
+                    gameMode = gameModeEnum.textureCreator
+                End If
 
-            If Keyboard.GetState.IsKeyDown(Keys.F) Then
-                If graphics.IsFullScreen = True Then
-                    graphics.IsFullScreen = False
-                Else
-                    graphics.IsFullScreen = True
+                If Keyboard.GetState.IsKeyDown(Keys.W) Then
+                    myPlayer.Move(Player.direction.up)
+                End If
+
+                If Keyboard.GetState.IsKeyDown(Keys.S) Then
+                    myPlayer.Move(Player.direction.down)
+                End If
+
+                If Keyboard.GetState.IsKeyDown(Keys.D) Then
+                    myPlayer.Move(Player.direction.right)
+                End If
+
+                If Keyboard.GetState.IsKeyDown(Keys.A) Then
+                    myPlayer.Move(Player.direction.left)
+                End If
+
+                If Keyboard.GetState.IsKeyDown(Keys.F) Then
+                    If graphics.IsFullScreen = True Then
+                        graphics.IsFullScreen = False
+                    Else
+                        graphics.IsFullScreen = True
+                    End If
+                End If
+                '        For i = 0 To blocks.Count - 2
+                '            If blocks(blocks.Count - 1).blockPos = blocks(i).blockPos Then
+                '                blocks.RemoveAt(blocks.Count - 1)
+                '                GoTo end_of_for
+                '            End If
+                '        Next
+                'end_of_for:
+            Else
+                'gameMode Texture
+                If Keyboard.GetState.IsKeyDown(Keys.Escape) Then
+                    blocks.Clear()
+                    gameMode = gameModeEnum.normal
                 End If
             End If
-            '        For i = 0 To blocks.Count - 2
-            '            If blocks(blocks.Count - 1).blockPos = blocks(i).blockPos Then
-            '                blocks.RemoveAt(blocks.Count - 1)
-            '                GoTo end_of_for
-            '            End If
-            '        Next
-            'end_of_for:
-            ' TODO: Add your update logic here
             MyBase.Update(gameTime)
-        End If
+        End If 'is active
     End Sub
 
     ''' <summary>
@@ -159,23 +181,25 @@ Public Class Game1
     ''' </summary>
     ''' <param name="gameTime">Provides a snapshot of timing values.</param>
     Protected Overrides Sub Draw(ByVal gameTime As GameTime)
-        GraphicsDevice.Clear(Color.CornflowerBlue)
+        If Me.IsActive Then
+            GraphicsDevice.Clear(Color.CornflowerBlue)
 
-        spriteBatch.Begin()
+            spriteBatch.Begin()
 
-        For i = 0 To Blocks.Count - 1
-            spriteBatch.Draw(blocks(i).unittex, blocks(i).unitPos, Color.White)
-        Next
+            For i = 0 To blocks.Count - 1
+                spriteBatch.Draw(blocks(i).unittex, blocks(i).unitPos, Color.White)
+            Next
 
-        spriteBatch.Draw(myPlayer.unittex, myPlayer.unitPos, Color.White)
+            spriteBatch.Draw(myPlayer.unittex, myPlayer.unitPos, Color.White)
 
 
-        spriteBatch.End()
+            spriteBatch.End()
 
-        myText.draw()
+            myText.draw()
 
-        ' TODO: Add your drawing code here
-        MyBase.Draw(gameTime)
+            ' TODO: Add your drawing code here
+            MyBase.Draw(gameTime)
+        End If
     End Sub
 
 End Class

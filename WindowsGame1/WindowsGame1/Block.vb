@@ -27,10 +27,10 @@
         End If
     End Sub
     Public Shared Function BlockPos(pos As Vector2) As Vector2
-        Return New Vector2(Math.Round(pos.X / 16) * 16, Math.Round(pos.Y / 16) * 16)
+        Return BlockPos(pos.X, pos.Y)
     End Function
-    Public Shared Function BlockPos(x As Integer, y As Integer) As Vector2
-        Return New Vector2(Math.Round(x / 16) * 16, Math.Round(y / 16) * 16)
+    Public Shared Function BlockPos(x As Single, y As Single) As Vector2
+        Return New Vector2(Math.Truncate(x / 16) * 16, Math.Truncate(y / 16) * 16)
     End Function
 
 End Class

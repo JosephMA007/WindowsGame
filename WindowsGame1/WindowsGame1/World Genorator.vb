@@ -12,13 +12,37 @@
     End Sub
 
     Public Shared Sub GenorateTexturePattern(ByRef b As System.Collections.Generic.List(Of Block))
+        Dim w As Integer = graphics.PreferredBackBufferWidth
+        Dim h As Integer = graphics.PreferredBackBufferHeight
 
         'still need to put this in the middle
+        Dim spotsW As Integer = Math.Round(w / 16, 0)
+        Dim spotsH As Integer = Math.Round(h / 16, 0)
 
-        For row = 0 To 15
-            For col = 0 To 15
-                Block.addBlock(b, New Vector2(col * Block.blockSize, row * Block.blockSize), Color.Green, False)
+        Dim startW As Integer = (spotsW - Block.blockSize) / 2
+        Dim startH As Integer = (spotsH - Block.blockSize) / 2
+        If startW < 0 Then startW = 0
+        If startH < 0 Then startH = 0
+
+        Dim c As Color = Color.White
+        Dim lastRowColor As Color = Color.White
+
+        For row = startH To Block.blockSize - 1 + startH
+            For col = startW To Block.blockSize - 1 + startW
+                Block.addBlock(b, New Vector2(col * Block.blockSize, row * Block.blockSize), c, False)
+                If c = Color.White Then
+                    c = Color.Gray
+                Else
+                    c = Color.White
+                End If
             Next
+            If lastRowColor = Color.White Then
+                c = Color.Gray
+                lastRowColor = Color.Gray
+            Else
+                c = Color.White
+                lastRowColor = Color.White
+            End If
         Next
 
     End Sub
