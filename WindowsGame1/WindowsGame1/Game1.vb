@@ -75,15 +75,15 @@ Public Class Game1
         If (Me.IsActive) Then
             Dim mousePos As Vector2 = Block.BlockPos(Mouse.GetState.X, Mouse.GetState.Y)
 
-            myText.text = "Debugging Info:"
-            myText.text += vbNewLine & "Blocks: " & blocks.Count
+            myText.setText("Debugging Info:")
+            myText.addText("Blocks: " & blocks.Count)
             'block under mouse
             Dim b1 As Block = blocks.Find(Function(x) x.unitPos = mousePos)
             If Not IsNothing(b1) Then
-                myText.text += vbNewLine & "Block under mouse: " & b1.id
+                myText.addText("Block under mouse: " & b1.id)
             End If
 
-            myText.text += vbNewLine & "Mouse Pos (" & Mouse.GetState.X & "," & Mouse.GetState.Y & ") Block Calc (" & mousePos.X & "," & mousePos.Y & ")"
+            myText.addText("Mouse Pos (" & Mouse.GetState.X & "," & Mouse.GetState.Y & ") Block Calc (" & mousePos.X & "," & mousePos.Y & ")")
 
             If gameMode = gameModeEnum.normal Then
                 ' Allows the game to exit

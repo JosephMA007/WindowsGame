@@ -45,5 +45,61 @@
             End If
         Next
 
+        colorPicker(b)
     End Sub
+
+    Public Shared Sub colorPicker(ByRef blocks As System.Collections.Generic.List(Of Block))
+        Dim c As New ColorChart
+        "instead of that use color lovers api provided on github"
+        For row = 0 To 31
+            For col = 0 To 15
+                Block.addBlock(blocks, New Vector2(col * Block.blockSize, row * Block.blockSize), c.c, False)
+                c.nextColor()
+            Next
+        Next
+    End Sub
+
+    Class ColorChart
+        Public r, g, b As Integer
+        Public myStep As enumStep
+        Public c As Color
+        Public Enum enumStep
+            r = 1
+            g = 2
+            b = 3
+        End Enum
+        Private base As Integer
+        Public Sub New()
+            myStep = enumStep.r
+            c = New Color(r, g, b)
+        End Sub
+
+        Public Sub nextColor()
+            Select Case myStep
+                Case enumStep.r
+                    r += 16
+                    If r > 256 Then
+                        r = base
+                        base += 8
+                        myStep = enumStep.g
+                    End If
+                Case enumStep.g
+                    g += 16
+                    If g > 256 Then
+                        g = base
+                        base += 8
+                        myStep = enumStep.b
+                    End If
+                Case enumStep.b
+                    b += 16
+                    If b > 256 Then
+                        b = base
+                        base += 8
+                        myStep = enumStep.r
+                    End If
+            End Select
+            If base > 256 Then base = 0
+            c = New Color(r, g, b)
+        End Sub
+    End Class
 End Class

@@ -14,6 +14,11 @@
         text = str
     End Sub
 
+    Public Sub addText(str As String)
+        text += vbNewLine & str
+    End Sub
+
+
     Public Sub draw()
         spriteBatch.Begin()
 
