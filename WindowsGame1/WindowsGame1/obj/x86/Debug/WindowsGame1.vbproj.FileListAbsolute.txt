@@ -23,3 +23,5 @@ C:\Users\micha_000\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\obj\x8
 C:\Users\micha_000\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.xml
 C:\Users\micha_000\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.pdb
 C:\Users\micha_000\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.vbprojResolveAssemblyReference.cache
+C:\Users\micha_000\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\bin\x86\Debug\ColourLovers.dll
+C:\Users\micha_000\Documents\GitHub\WindowsGame\WindowsGame1\WindowsGame1\bin\x86\Debug\ColourLovers.pdb

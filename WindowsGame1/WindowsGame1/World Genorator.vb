@@ -1,7 +1,9 @@
-﻿Public Class World_Genorator
+﻿Imports ColourLovers
+Imports System.Collections.Generic
+Public Class World_Genorator
 
 
-    Public Shared Sub Genorate(ByRef b As System.Collections.Generic.List(Of Block))
+    Public Shared Sub Genorate(ByRef b As List(Of Block))
 
         'make a line of blocks
 
@@ -11,13 +13,13 @@
 
     End Sub
 
-    Public Shared Sub GenorateTexturePattern(ByRef b As System.Collections.Generic.List(Of Block))
+    Public Shared Sub GenorateTexturePattern(ByRef b As List(Of Block))
         Dim w As Integer = graphics.PreferredBackBufferWidth
         Dim h As Integer = graphics.PreferredBackBufferHeight
 
         'still need to put this in the middle
-        Dim spotsW As Integer = Math.Round(w / 16, 0)
-        Dim spotsH As Integer = Math.Round(h / 16, 0)
+        Dim spotsW As Integer = Math.Round(w / Block.blockSize, 0)
+        Dim spotsH As Integer = Math.Round(h / Block.blockSize, 0)
 
         Dim startW As Integer = (spotsW - Block.blockSize) / 2
         Dim startH As Integer = (spotsH - Block.blockSize) / 2
@@ -48,16 +50,45 @@
         colorPicker(b)
     End Sub
 
-    Public Shared Sub colorPicker(ByRef blocks As System.Collections.Generic.List(Of Block))
-        Dim c As New ColorChart
-        "instead of that use color lovers api provided on github"
-        For row = 0 To 31
-            For col = 0 To 15
-                Block.addBlock(blocks, New Vector2(col * Block.blockSize, row * Block.blockSize), c.c, False)
-                c.nextColor()
+    Public Shared Sub colorPicker(ByRef blocks As List(Of Block))
+        'Dim c As New ColorChart
+        '"instead of that use color lovers api provided on github"
+        Dim pals As Model.Palette.PaletteCollection = getColors()
+        If Not IsNothing(pals) Then
+            Dim row As Integer
+            For Each pal As Model.Palette.Palette In pals.Palettes
+                Dim col As Integer
+                For Each c As Drawing.Color In pal.ToColors
+                    Dim xColor As Color = New Color(c.R, c.G, c.B)
+                    Block.addBlock(blocks, New Vector2(col * Block.blockSize, row * Block.blockSize), xColor, False)
+                    col += 1
+                Next
+                row += 1
             Next
-        Next
+        Else
+            Block.addBlock(blocks, New Vector2(0 * Block.blockSize, 0 * Block.blockSize), Color.Black, False)
+        End If
     End Sub
+
+    Public Shared Function getColors(Optional offset As Integer = 0) As Model.Palette.PaletteCollection
+        'I am probably going to need to put this in a tread, so i am not waiting for the server
+        Dim colorLover As New ColourLoversRepository
+        Dim req As New ColourLovers.SearchRequest.PalettesSearchRequest
+        req.NumResults = 5
+        req.ResultOffset = offset
+        Dim paletCollection As Model.Palette.PaletteCollection = colorLover.Palettes.GetPalettes(req)
+        If paletCollection.TotalResults > 0 Then
+            Return paletCollection
+        Else
+            Return Nothing
+        End If
+        'For Each pal As ColourLovers.Model.Palette.Palette In paletCollection.Palettes
+        '    For Each c As System.Drawing.Color In pal.ToColors()
+
+        '    Next
+        'Next
+    End Function
+
 
     Class ColorChart
         Public r, g, b As Integer
@@ -72,6 +103,7 @@
         Public Sub New()
             myStep = enumStep.r
             c = New Color(r, g, b)
+            base = 255
         End Sub
 
         Public Sub nextColor()
@@ -80,26 +112,27 @@
                     r += 16
                     If r > 256 Then
                         r = base
-                        base += 8
+                        base -= 8
                         myStep = enumStep.g
                     End If
                 Case enumStep.g
                     g += 16
                     If g > 256 Then
                         g = base
-                        base += 8
+                        base -= 8
                         myStep = enumStep.b
                     End If
                 Case enumStep.b
                     b += 16
                     If b > 256 Then
                         b = base
-                        base += 8
+                        base -= 8
                         myStep = enumStep.r
                     End If
             End Select
-            If base > 256 Then base = 0
+            If base < 0 Then base = 255
             c = New Color(r, g, b)
         End Sub
+
     End Class
 End Class
