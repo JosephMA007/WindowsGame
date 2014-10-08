@@ -55,9 +55,9 @@ Public Class World_Genorator
         '"instead of that use color lovers api provided on github"
         Dim pals As Model.Palette.PaletteCollection = getColors()
         If Not IsNothing(pals) Then
-            Dim row As Integer
+            Dim row As Integer = 3
             For Each pal As Model.Palette.Palette In pals.Palettes
-                Dim col As Integer
+                Dim col As Integer = 5
                 For Each c As Drawing.Color In pal.ToColors
                     Dim xColor As Color = New Color(c.R, c.G, c.B)
                     Block.addBlock(blocks, New Vector2(col * Block.blockSize, row * Block.blockSize), xColor, False)
@@ -76,6 +76,8 @@ Public Class World_Genorator
         Dim req As New ColourLovers.SearchRequest.PalettesSearchRequest
         req.NumResults = 5
         req.ResultOffset = offset
+        req.OrderColumn = [Enum].SortColumn.DateCreated
+        req.OrderDirection = [Enum].SortOrder.Descending
         Dim paletCollection As Model.Palette.PaletteCollection = colorLover.Palettes.GetPalettes(req)
         If paletCollection.TotalResults > 0 Then
             Return paletCollection

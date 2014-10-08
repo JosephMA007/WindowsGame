@@ -190,6 +190,7 @@ Public Class Game1
                 spriteBatch.Draw(blocks(i).unittex, blocks(i).unitPos, Color.White)
             Next
 
+            If gameMode = gameModeEnum.normal Then _
             spriteBatch.Draw(myPlayer.unittex, myPlayer.unitPos, Color.White)
 
 
